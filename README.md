@@ -163,6 +163,9 @@ the data and functionalities in this package itself and it intends to be
 a tool for initial assessment of the Chicago data, aiming to quickly
 guide interests for further data discovery.
 
+The app is currently published on the RShiny server here:
+<a href="https://ryanwyg.shinyapps.io/ChicagoDataExplorer/#section-the-maps" class="uri">https://ryanwyg.shinyapps.io/ChicagoDataExplorer/#section-the-maps</a>
+
 The app is made into two sections, a spatial data explorer section (“The
 Maps”) and a non-spatial data explorer section(“The Tables”). Both uses
 a sidebar to select specific variables of interest, and has the
@@ -170,6 +173,12 @@ functionality for downloading the data.
 
 Known Issues
 ------------
+
+### Data Package
+
+### Data Explorer App
+
+Scrolling is buggy in the data table visualization (second tab);
 
 Future Improvements
 -------------------
