@@ -165,6 +165,8 @@ guide interests for further data discovery.
 
 The app is currently published on the RShiny server here:
 <a href="https://ryanwyg.shinyapps.io/ChicagoDataExplorer/#section-the-maps" class="uri">https://ryanwyg.shinyapps.io/ChicagoDataExplorer/#section-the-maps</a>
+![Image of Data Explorer
+App](https://github.com/ryanwyg/Chicago-Data-Package/blob/master/ChicagoDataExplorer.png)
 
 The app is made into two sections, a spatial data explorer section (“The
 Maps”) and a non-spatial data explorer section(“The Tables”). Both uses
