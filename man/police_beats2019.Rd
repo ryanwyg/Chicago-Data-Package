@@ -4,14 +4,16 @@
 \name{police_beats2019}
 \alias{police_beats2019}
 \title{sf object of current CPD beats}
-\format{An sf object with 277 rows and 5 variables:
+\format{
+An sf object with 277 rows and 5 variables:
 \describe{
   \item{beat}{beat ID #}
   \item{beat_num}{}
   \item{district}{police district}
   \item{sector}{}
   \item{geometry}{sfc polygon,  crs = 4362}
-}}
+}
+}
 \source{
 \url{https://data.cityofchicago.org/Public-Safety/Boundaries-Police-Beats-current-/aerh-rz74}
 }
