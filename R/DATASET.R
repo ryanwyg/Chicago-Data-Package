@@ -1,5 +1,5 @@
 ##creating cook county sf object
-census_tracts_2010 <- readOGR(dsn = "~/Desktop/chicagodatapackage-master/data-raw/CensusTracts2010", "geo_export_8132126e-e716-4129-8a20-c6eb6d8147a0")
+census_tracts_2010 <- readOGR(dsn = "~/Documents/code/ChicagoPackage/data-raw/CensusTracts2010", "geo_export_8132126e-e716-4129-8a20-c6eb6d8147a0")
 census_tracts_2010 <- st_as_sf(census_tracts_2010)
 usethis::use_data(census_tracts_2010, overwrite = TRUE)
 
