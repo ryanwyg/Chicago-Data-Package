@@ -8,10 +8,11 @@ Chicago, concentrating on quantitative methods of social analyses. For
 this project, I further developed an open Chicago data package from a
 past GIS 3 class.
 
-This is a continuation of Clyde Schwarb’s Chicago Data Package project
-for GIS 3. Clyde is an undergraduate at the University of Chicago
-studying geography and environmental and urban studies. A year ago,
-Clyde initated this project to “provide a starting point for those
+This is a continuation of Clyde Schwarb’s Chicago Data Package
+(<a href="https://github.com/cschwab1/chicagodatapackage" class="uri">https://github.com/cschwab1/chicagodatapackage</a>)
+project for GIS 3. Clyde is an undergraduate at the University of
+Chicago studying geography and environmental and urban studies. A year
+ago, Clyde initated this project to “provide a starting point for those
 interested in learning geocomputation with R using real Chicago data”,
 and “building a larger collection of civic data for academic and
 amateur, journalist and researcher, non-profit and concerned citizens
