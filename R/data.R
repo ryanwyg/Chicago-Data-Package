@@ -126,22 +126,22 @@
 #' @source \url{}
 "cps_tiers"
 
-#'
-#' @details
-#' @format
+#' boundary files of 2010 census tracrs in the city of Chicago
+#' @details census tract boundaries
+#' @format sf object (st_polygons) with 798 observations of 28 variables
 #' \describe{
 #'   \item{}{}
 #' }
-#' @source \url{}
+#' @source \url{https://data.cityofchicago.org/Facilities-Geographic-Boundaries/Boundaries-Census-Tracts-2010/5jrd-6zik}
 "census_tracts_2010"
 
-#'
-#' @details
-#' @format
+#' cta ridership information
+#' @details Ridership information for all L train stations with monthly and weekday/weekend information.
+#' @format dataframe with 30468 observations of 7 variables
 #' \describe{
 #'   \item{}{}
 #' }
-#' @source \url{}
+#' @source \url{https://data.cityofchicago.org/Transportation/CTA-Ridership-Bus-Routes-Monthly-Day-Type-Averages/bynn-gwxy}
 "cta_ridership"
 
 #' L train stations

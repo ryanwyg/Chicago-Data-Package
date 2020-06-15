@@ -181,6 +181,10 @@ conditionalPanel(
         'input.dataset === "Tax Increment Financing"',
         helpText("Click the column header to sort a column.")
       )
+      conditionalPanel(
+        'input.dataset === "Affordable Rental Housing"',
+        helpText("Click the column header to sort a column.")
+      )
       
 downloadButton(outputId = "down", label = "Download the Data")
 
@@ -205,7 +209,8 @@ tabsetPanel(
         tabPanel("Chicago SVI", DT::dataTableOutput("mytable4")),
         tabPanel("CPS Tiers", DT::dataTableOutput("mytable5")),
         tabPanel("Chicago Public Schools", DT::dataTableOutput("mytable6")),
-        tabPanel("Tax Increment Financing", DT::dataTableOutput("mytable7"))
+        tabPanel("Tax Increment Financing", DT::dataTableOutput("mytable7")),
+        tabPanel("Affordable Rental Housing", DT::dataTableOutput("mytable8"))
       )
 
 output$mytable1 <- DT::renderDataTable({
@@ -233,6 +238,10 @@ output$mytable6 <- DT::renderDataTable({
   })
 
 output$mytable7 <- DT::renderDataTable({
+    DT::datatable(tif_sf, options = list(c(scrollY="200px", scrollX="300px", pageLength = 100)))
+  })
+
+output$mytable8 <- DT::renderDataTable({
     DT::datatable(tif_sf, options = list(c(scrollY="200px", scrollX="300px", pageLength = 100)))
   })
 ```
