@@ -153,6 +153,7 @@ as a json file;
 More datasets will be added after the completion of the first stage of
 project.
 </p>
+
 The Chicago Data Explorer
 -------------------------
 
