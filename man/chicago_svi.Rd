@@ -4,7 +4,8 @@
 \name{chicago_svi}
 \alias{chicago_svi}
 \title{Cleaned sf SVI data on tract level}
-\format{An sf object with 801 rows and 14 variables:
+\format{
+An sf object with 801 rows and 14 variables:
 \describe{
   \item{tractce10}{tract ID in numeric format (had to do some cleaning that made it no longer a 10-13 digit pin}
   \item{commarea}{numeric id of community area tract is in}
@@ -20,7 +21,8 @@
   \item{E_LIMENG}{persons 5+ who speak Enligsh "less than well"}
   \item{R_PL_THEME1}{percentile ranking for socioeconomic theme summary - higher value is higher vulnerability}
   \item{geometry}{sfc polygon, crs = 4326}
-}}
+}
+}
 \source{
 \url{https://svi.cdc.gov/data-and-tools-download.html}
 }
