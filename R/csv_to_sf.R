@@ -11,7 +11,7 @@
 #'
 #' @examples
 #' csv_to_sf("affordable_housing",
-#' "~/Documents/code/chicagodatapackage/chicagodatapackage/data-raw/AffordableHousingDevelopments.csv",
+#' data <- read.csv("./master/data-raw/AffordableHousingDevelopments.csv", header=TRUE, sep=","),
 #' "Longitude", "Latitude", 4326)
 #'
 csv_to_sf <- function(name, dataset, long_name, lat_name, espg){
