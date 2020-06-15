@@ -1,0 +1,29 @@
+Package: ChicagoPackage
+Title: Contains some Chicago-relevant datasets, primarily sf objects. 
+Version: 0.0.1.0000
+Authors@R: 
+    person(given = "Ryan",
+           family = "Wang",
+           role = c("aut", "cre"),
+           email = "yigong@uchicago.edu",
+           comment = c(ORCID = "YOUR-ORCID-ID"))
+Description: The package loads a set of Chicago datasets as sf objects and functions to assist with data wrangling.
+Depends: R (>= 2.10)
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 7.1.0
+Imports: 
+    glue,
+    assertthat,
+    sf,
+    rgeos,
+    rgdal,
+    spdep,
+    dplyr
+Suggests: 
+    tmap,
+    knitr,
+    rmarkdown,
+    maptools
+VignetteBuilder: knitr

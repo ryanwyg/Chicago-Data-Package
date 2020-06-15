@@ -1,0 +1,12 @@
+name: ChicagoDataExplorer
+title: ChicagoDataExplorer
+username:
+account: ryanwyg
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 2455160
+bundleId: 3270059
+url: https://ryanwyg.shinyapps.io/ChicagoDataExplorer/
+when: 1592191388.35687
+asMultiple: TRUE
+asStatic: FALSE
