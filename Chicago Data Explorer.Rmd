@@ -106,7 +106,7 @@ Output {data-width=650}
     }
   })
 
-renderLeaflet({
+#renderLeaflet({
   leaflet(ca_boundaries) %>%
   addPolygons(color = "#444444", weight = 1, smoothFactor = 0.5,
     opacity = 1.0, fillOpacity = 0.5,

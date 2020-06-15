@@ -20,7 +20,8 @@ Imports:
     rgeos,
     rgdal,
     spdep,
-    dplyr
+    dplyr,
+    DT
 Suggests: 
     tmap,
     knitr,
