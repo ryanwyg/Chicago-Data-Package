@@ -159,30 +159,3 @@
 #' }
 #' @source \url{}
 "tif_sf"
-
-#'
-#' @details crimes, 2001 to present
-#' @format csv, 7126314 observations of 22 variables.
-#' \describe{
-#'   \item{}{}
-#' }
-#' @source \url{}
-"crime"
-
-#'
-#' @details crimes, 2001 to present
-#' @format sf object, 7126314 observations of 22 variables.
-#' \describe{
-#'   \item{}{}
-#' }
-#' @source \url{}
-"crime_geo"
-
-#'
-#' @details
-#' @format
-#' \describe{
-#'   \item{}{}
-#' }
-#' @source \url{}
-"divvy_trips"

@@ -6,6 +6,7 @@ output:
     social: menu
     author: 'Ryan Wang'
     theme: bootstrap
+    vertical_layout: fill
     # logo: www/73F1665C-0FE6-4183-8AD1-E91DB8EFAFA4.png
 runtime: shiny
 ---
@@ -37,6 +38,7 @@ library(dplyr)
 library(ChicagoPackage)
 library(tmap)
 library(sf)
+library(DT)
 ```
 
 The Maps
@@ -45,9 +47,10 @@ Column {data-width=350}
 -----------------------------------------------------------------------
 ### Select Dataset and Attributes
 ```{r}
-selectizeInput("dataset", "Choose a dataset:", choices = c("Chicago Public Shools 2018" = cps_tiers, "Divvy" = divvy, "CTA Ridership" = cta_ridership, "CTA Stations" = cta_stations, "Crime" = crime_geo))
+span(tags$i(h6("Data current as of June 2020.")), style="color:#045a8d")
+selectizeInput("dataset", "Choose a dataset:", choices = c("Chicago Public Shools 2018", "Divvy", "CTA Stations", "Social Vulnerability Index"))
 selectInput("variable", "Choose a variable:", choices = c("1", "2", "3"))
-selectInput("by", "visualize by:", choices = c("ca_boundaries", "census_tracts_2010", "police_beats2019", "wards2019"))
+selectInput("by", "visualize by:", choices = c("Community Area", "2010 Cencus Tracts", "Police Beats", "Police Wards"))
 selectInput("as", "show as:", choices = c("density dot", "dots", "Choropleth Map"))
 sliderInput("year",
             "Year",
@@ -56,30 +59,6 @@ sliderInput("year",
             step = 1,
             sep = "",
             value = 1)
-
-
-```
-```{r, eval=FALSE}
-selectInput("dataset", "Choose a dataset:", choices = c("Chicago Public Shools 2018" = cpsPR2018_sf, "Divvy" = divvy, "CTA Ridership" = cta_ridership, "CTA Stations" = cta_stations))
-selectInput("variable", "Choose a variable:", choices = c("1", "2", "3"))
-selectInput("by", "visualize by:", choices = c(ca_boundaries, census_tracts_2010, police_beats2019, wards2019))
-selectInput("as", "show as:", choices = c("density dot", "dots", "Choropleth Map"))
-sliderInput("year",
-            "Year",
-            min = 2001,
-            max = 2018,
-            step = 1,
-            sep = "",
-            value = 1)
-
-downloadButton(outputId = "down", label = "Download the Graph")
-downloadHandler(filename = function() {
-     paste('resultset-', Sys.Date(), '.csv', sep='')
-   },
-     content = function(file) {
-     write.csv(subset_dataset(), file, row.names = FALSE)
-   }
-)
 ```
 
 ### Download the Plot
@@ -100,6 +79,32 @@ Output {data-width=650}
 -----------------------------------------------------------------------
 ### Output Map
 ```{r}
+# update region selections
+  observeEvent(input$dataset, {
+    if (input$dataset=="Divvy") {
+      updateSelectInput(session = session, inputId = "variable", 
+                        choices = c("Total Docks", "Docks in Service"))
+      updateSelectInput(session = session, inputId = "by", 
+                        choices = c("Community Area", "2010 Census Tracts", "Police Wards"))
+      updateSelectInput(session = session, inputId = "as", 
+                        choices = c("Choropleth Map", "Dots"))
+    }
+     if (input$dataset=="Chicago Public Shools 2018") {
+      updateSelectInput(session = session, inputId = "variable", 
+                        choices = c("School Type", "Primary Category", "Student Growth Rating", "Student Attainment Rating", "Culture Climate Rating", "Healthy School Certification", "School Survey Amibitious Instruction", "School Survey Safety", "Suspensions Per 100 Students Year 1 Percent"))
+      updateSelectInput(session = session, inputId = "by", 
+                        choices = c("NA"))
+      updateSelectInput(session = session, inputId = "as", 
+                        choices = c("Dots"))
+    }
+  }, ignoreInit = TRUE)
+
+  # create dataframe with selected data
+  reactive_db = reactive({
+    if (input$dataset=="Divvy") { 
+      db = divvy
+    }
+  })
 
 renderLeaflet({
   leaflet(ca_boundaries) %>%
@@ -111,6 +116,32 @@ renderLeaflet({
     addProviderTiles(providers$CartoDB.Positron)
   })
 
+renderLeaflet({
+      leaflet(divvy) %>% 
+      addCircles(divvy$geometry) %>% 
+      addTiles() %>%
+      addCircleMarkers(data = divvy, divvy$geometry, 
+                       radius = 3, popup = ~as.character(cntnt), 
+                       color = ~pal(divvy$Status),
+                       stroke = FALSE, fillOpacity = 0.8)%>%
+      addLegend(pal=pal, values=bb_data$Category,opacity=1, na.label = "Not Available")%>%
+      addEasyButton(easyButton(
+        icon="fa-crosshairs", title="ME",
+        onClick=JS("function(btn, map){ map.locate({setView: true}); }")))
+        })
+renderLeaflet({
+      leaflet(cpsPR2018_sf) %>% 
+      addCircles(cpsPR2018_sf$School_Type) %>% 
+      addTiles() %>%
+      addCircleMarkers(data = cpsPR2018_sf, cpsPR2018_sf$geometry, 
+                       radius = 3, popup = ~as.character(cntnt), 
+                       color = ~pal(cpsPR2018_sf$School_Type),
+                       stroke = FALSE, fillOpacity = 0.8)%>%
+      addLegend(pal=pal, values=bb_data$Category,opacity=1, na.label = "Not Available")%>%
+      addEasyButton(easyButton(
+        icon="fa-crosshairs", title="ME",
+        onClick=JS("function(btn, map){ map.locate({setView: true}); }")))
+        })
 ```
 
 The Tables
@@ -118,15 +149,39 @@ The Tables
 Select {.sidebar}
 -----------------------------------------------------------------------
 ```{r}
-selectInput("dataset", "Choose a dataset:", choices = c("Crime" = crime, "Divvy", "CTA Ridership", "CTA Stations"))
-selectInput("variable", "Choose a variable:", choices = c("1", "2", "3"))
-sliderInput("year",
-            "Year",
-            min = 2001,
-            max = 2018,
-            step = 1,
-            sep = "",
-            value = 1)
+#selectInput("data", "Choose a dataset:", choices = c("Divvy", "CTA Ridership", "CTA Stations", "Chicago SVI", "CPS Tiers", "Chicago Public Schoos", "Tax Increment Financing"))
+
+
+conditionalPanel(
+        'input.dataset === "Divvy Stations"',
+        helpText("Click the column header to sort a column.")
+      )
+      conditionalPanel(
+        'input.dataset === "CTA Ridership"',
+        helpText("Click the column header to sort a column.")
+      )
+      conditionalPanel(
+        'input.dataset === "CTA Stations"',
+        helpText("Click the column header to sort a column.")
+      )
+      conditionalPanel(
+        'input.dataset === "Chicago SVI"',
+        helpText("Click the column header to sort a column.")
+      )
+      conditionalPanel(
+        'input.dataset === "CPS Tiers"',
+        helpText("Click the column header to sort a column.")
+      )
+      conditionalPanel(
+        'input.dataset === "Chicago Public Schools"',
+        checkboxGroupInput("show_vars", "Columns in dataset to show:",
+                           names(cpsPR2018_sf), selected = names(cpsPR2018_sf))
+      )
+      conditionalPanel(
+        'input.dataset === "Tax Increment Financing"',
+        helpText("Click the column header to sort a column.")
+      )
+      
 downloadButton(outputId = "down", label = "Download the Data")
 
 downloadHandler(filename = function() {
@@ -142,10 +197,44 @@ Output
 -----------------------------------------------------------------------
 ### Data
 ```{r}
+tabsetPanel(
+        id = 'dataset',
+        tabPanel("Divvy Stations", DT::dataTableOutput("mytable1")),
+        tabPanel("CTA Ridership", DT::dataTableOutput("mytable2")),
+        tabPanel("CTA Stations", DT::dataTableOutput("mytable3")),
+        tabPanel("Chicago SVI", DT::dataTableOutput("mytable4")),
+        tabPanel("CPS Tiers", DT::dataTableOutput("mytable5")),
+        tabPanel("Chicago Public Schools", DT::dataTableOutput("mytable6")),
+        tabPanel("Tax Increment Financing", DT::dataTableOutput("mytable7"))
+      )
 
-renderTable({
-  p<-read.csv("/Users/ryan/Desktop/chicagodatapackage-master/data-raw/AffordableHousingDevelopments.csv")
-})
+output$mytable1 <- DT::renderDataTable({
+    DT::datatable(divvy, options(DT.options = list(scrollY="100vh")))
+  })
+  
+output$mytable2 <- DT::renderDataTable({
+    DT::datatable(cta_ridership, options = list(c(scrollY="200px", scrollX="300px", pageLength = 100)))
+  })
+
+output$mytable3 <- DT::renderDataTable({
+    DT::datatable(cta_stations, options = list(c(scrollY="200px", scrollX="300px", pageLength = 100)))
+  })
+
+output$mytable4 <- DT::renderDataTable({
+    DT::datatable(chicago_svi, options = list(c(scrollY="200px", scrollX="300px", pageLength = 100)))
+  })
+
+output$mytable5 <- DT::renderDataTable({
+    DT::datatable(cps_tiers, options = list(c(scrollY="200px", scrollX="300px", pageLength = 100)))
+  })
+
+output$mytable6 <- DT::renderDataTable({
+    DT::datatable(cpsPR2018_sf, options = list(c(scrollY="200px", scrollX="300px", pageLength = 100)))
+  })
+
+output$mytable7 <- DT::renderDataTable({
+    DT::datatable(tif_sf, options = list(c(scrollY="200px", scrollX="300px", pageLength = 100)))
+  })
 ```
 
 Codebook
@@ -183,4 +272,13 @@ Codebook
 
 About
 =======================================================================
-Building on variable health dashboard costs $10K, and it is absolutely crazy that something I can build in a day costs this much in real life!
+My name is Ryan Wang, and I am a Master's student at the Univeristy of Chicago, concentrating on quantitative methods of social analyses. I created this flexdashboard app with RShiny code incorporated. This app uses the data and functionalities in the Chicago Package and it intends to be a tool for initial assessment of the Chicago data, aiming to quickly guide interests for further data discovery.
+
+The "Chicago Package" is a continuation of Clyde Schwarb's Chicago Data Package (https://github.com/cschwab1/chicagodatapackage) project for GIS 3. Clyde is an undergraduate at the University of Chicago studying geography and environmental and urban studies. A year ago, Clyde initated this project to "provide a starting point for those interested in learning geocomputation with R using real Chicago data", and "building a larger collection of civic data for academic and amateur, journalist and researcher, non-profit and concerned citizens alike." Some most commonly used datasets were provided in the original package, along with initial processing code and vignettes from Clyde. I completed documentation of datasets and added two new datasets, Crime - from 2001 to present, and Divvy Trips.
+
+I have further improved upon the package by providing complete data documentation and vignettes. I also added two new datasets and updated exisiting datasets to current June 2020 data.
+
+The app is made into two sections, a spatial data explorer section ("The Maps") and a non-spatial data explorer section("The Tables"). Both uses a sidebar to select specific variables of interest, and has the functionality for downloading the data.
+
+Copyright (c) 2019 Clyde
+Copyright (c) 2020 Ryan

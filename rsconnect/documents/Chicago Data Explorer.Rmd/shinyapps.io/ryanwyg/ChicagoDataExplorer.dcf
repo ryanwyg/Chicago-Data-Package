@@ -1,0 +1,13 @@
+name: ChicagoDataExplorer
+title: ChicagoDataExplorer
+username:
+account: ryanwyg
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 2455160
+bundleId: 3271865
+url: https://ryanwyg.shinyapps.io/ChicagoDataExplorer/
+when: 1592225883.3714
+asMultiple: TRUE
+asStatic: FALSE
+ignoredFiles: README.Rmd
