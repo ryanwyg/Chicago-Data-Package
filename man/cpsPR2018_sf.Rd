@@ -4,14 +4,16 @@
 \name{cpsPR2018_sf}
 \alias{cpsPR2018_sf}
 \title{2018-2019 CPS Progress report sf object}
-\format{An sf object with 660 rows and 55 variables:
+\format{
+An sf object with 660 rows and 55 variables:
 \describe{
   \item{School_ID}{}
   \item{Short_Name}{}
   \item{Long_Name}{}
   ...
   \item{geometry}{sfc points, crs = 4362}
-}}
+}
+}
 \source{
 \url{https://data.cityofchicago.org/Education/Chicago-Public-Schools-School-Progress-Reports-SY1/dw27-rash}
 }
