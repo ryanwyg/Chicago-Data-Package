@@ -193,4 +193,6 @@ updates through the Data Explorer, which is constantly updated with new
 datasets from the city’s data portal. I plan to expand further with more
 sections for different categories of data, just like how the data portal
 websites classifies the data (“Buildings”, “Community”, “Education”
-etc.) Please do check back for updates.
+etc.)
+
+Another update that I plan to do is to transform data access for some of the datasets online. GitHub has a 25MB inidividual file size limit, which means that any dataset in the package would have to be smaller than 25MB. This is very limiting and tranforming to online access for big datasets would allow for more possibility in the package. However, this will create problems for the data explorer app, which is a potential concern. Please do check back for updates.
