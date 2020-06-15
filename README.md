@@ -169,18 +169,20 @@ The app is currently published on the RShiny server here:
 App](https://github.com/ryanwyg/Chicago-Data-Package/blob/master/ChicagoDataExplorer.png)
 
 The app is made into two sections, a spatial data explorer section (“The
-Maps”) and a non-spatial data explorer section(“The Tables”). Both uses
-a sidebar to select specific variables of interest, and has the
+Maps”) and a non-spatial data explorer section(“The Tables”). Both use
+sidebars to select specific variables of interest, and has the
 functionality for downloading the data.
 
 Known Issues
 ------------
 
 ### Data Package
+The "Crime" and "Divvy Trips" datasets are very large and not supported on Github.
 
 ### Data Explorer App
-
+Irrelevant selection is currently not greyed out in visualization tab (e.g. "Year" slider is always there yet only one dataset would utilize this functionality);
 Scrolling is buggy in the data table visualization (second tab);
+App is not optimized for mobile.
 
 Future Improvements
 -------------------
