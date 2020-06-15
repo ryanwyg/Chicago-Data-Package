@@ -100,6 +100,10 @@ cta_ridership <- read.csv("CTARidershipAvgsMonth.csv")
 usethis::use_data(cta_stations)
 usethis::use_data(cta_ridership)
 
+##affordablehousing
+afhouse <- read.csv("https://data.cityofchicago.org/api/views/s6ha-ppgi/rows.csv?accessType=DOWNLOAD")
+usethis::use_data(afhouse, overwrite = TRUE)
+
 ##crimes
 crime <- read.csv("~/Desktop/chicagodatapackage-master/data-raw/Crimes_-_2001_to_present.csv")
 crime <- as_tibble(crime) %>% filter(!is.na(crime$Latitude))

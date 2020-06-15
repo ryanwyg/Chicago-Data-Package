@@ -115,10 +115,12 @@
 #' @source \url{https://data.cityofchicago.org/Facilities-Geographic-Boundaries/Boundaries-Community-Areas-current-/cauq-8yn6}
 "ca_boundaries"
 
+#' sf object of Chicago Public School Tiers
 #'
-#' @details
-#' @format
+#' @details A sf object with information regarding the 798 public schools in Chicago. Information mainly concerns schools' tiers from 2011 to 2018.
+#' @format 798 observations of 28 variables
 #' \describe{
+#'   \item{tractce10}{}
 #'   \item{}{}
 #' }
 #' @source \url{}
@@ -142,20 +144,30 @@
 #' @source \url{}
 "cta_ridership"
 
-#'
-#' @details
-#' @format
+#' L train stations
+#' @details sf object with CTA L train station locations
+#' @format sf object with 144 observations of 3 variables
 #' \describe{
-#'   \item{}{}
-#' }
-#' @source \url{}
+#'   \item{Name}{name of the station}
+#'   \item{Description}{}
+#'   \item{geometry}{st_point format of locations}
+#' @source \url{https://data.cityofchicago.org/Transportation/CTA-L-Rail-Stations-Shapefile/vmyy-m9qj}
 "cta_stations"
 
-#'
+#' sf object of Tax Increment Financing (TIF) Projects (points)
 #' @details
-#' @format
+#' @format sf object with 502 observations of 19 variables
 #' \describe{
 #'   \item{}{}
 #' }
-#' @source \url{}
+#' @source \url{https://data.cityofchicago.org/Community-Economic-Development/Tax-Increment-Financing-TIF-Projects-Map/v3a3-hhqn}
 "tif_sf"
+
+#' affordable rental housing projects
+#' @details csv file with coordinate informations for each project
+#' @format dataframe with 428 observations of 14 variables
+#' \describe{
+#'   \item{}{}
+#' }
+#' @source \url{https://data.cityofchicago.org/Community-Economic-Development/Affordable-Rental-Housing-Developments/s6ha-ppgi/data}
+"afhouse"
