@@ -4,7 +4,8 @@
 \name{divvy}
 \alias{divvy}
 \title{sf object of divvy bike stations in Chicago}
-\format{An sf object with 608 rows and 13 variables:
+\format{
+An sf object with 608 rows and 13 variables:
 \describe{
   \item{ID}{station ID}
   \item{Station.Name}{}
@@ -19,7 +20,8 @@
   \item{Census.Tracts}{}
   \item{Wards}{}
   \item{geometry}{sfc points,  crs = 4362}
-}}
+}
+}
 \source{
 \url{https://data.cityofchicago.org/Transportation/Divvy-Bicycle-Stations/bbyy-e7gq}
 }
