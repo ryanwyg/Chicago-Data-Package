@@ -4,12 +4,14 @@
 \name{wards2019}
 \alias{wards2019}
 \title{sf object of the current Chicago wards}
-\format{An sf object with 50 rows and 4 variables:
+\format{
+An sf object with 50 rows and 4 variables:
 \describe{
   \item{shape_area}{area of ward in ? measurement}
   \item{ward}{id of ward}
   \item{geometry}{sfc multipolygon, crs = 4362}
-}}
+}
+}
 \source{
 \url{https://data.cityofchicago.org/Facilities-Geographic-Boundaries/Boundaries-Wards-2015-/sp34-6z76}
 }
