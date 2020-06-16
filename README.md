@@ -184,11 +184,11 @@ Known Issues
 ------------
 
 ### Data Package
-The "Crime" and "Divvy Trips" datasets are very large and not supported on Github; &nbsp;
+The "Crime" and "Divvy Trips" datasets are very large and not supported on Github; <br />
 csv_to_sf function not working properly (read.csv would return "'file' must be a character string or connection" in the function, but works normally when used separately.)
 
 ### Data Explorer App
-Irrelevant selection is currently not greyed out in visualization tab (e.g. "Year" slider is always there yet only one dataset would utilize this functionality); &nbsp;
+Irrelevant selection is currently not greyed out in visualization tab (e.g. "Year" slider is always there yet only one dataset would utilize this functionality); <br />
 Scrolling is buggy in the data table visualization (second tab);
 App is not optimized for mobile.
 
