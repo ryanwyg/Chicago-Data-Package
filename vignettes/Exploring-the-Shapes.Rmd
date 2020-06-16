@@ -1,0 +1,68 @@
+---
+title: "Exploring the Shapes"
+author: "Ryan Wang"
+date: "6-14-2020"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Exploring the Shapes}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE
+  # comment = "#>"
+)
+```
+
+This is a tutorial using the ChicagoPackage. This tutorial mainly concerns the shapes in the package, namely the community areas, police wards and beats, and cencus tracts.
+```{r}
+### load the relevant packages
+library(ChicagoPackage)
+library(tmap)
+library(sf)
+library(rgeos)
+library(rgdal)
+library(spdep)
+library(dplyr)
+```
+
+This Chicago Data Package contains different shapes, and this tutorial will show you what each individual shape looks like and how you might want to use them.
+
+# Community Areas
+```{r}
+# Seeing the properties of the community area dataset
+head(ca_boundaries)
+
+# Plotting community areas, by the area
+tm_shape(ca_boundaries) + tm_polygons("shape_area", palette = "Greens") +
+  tm_layout(main.title = "Community Areas")
+```
+# Census Tracts
+```{r}
+# Again, properties
+head(census_tracts_2010)
+
+# Plotting census tracts, by their community areas
+tm_shape(census_tracts_2010) + tm_polygons("commarea", palette = "Set3") +
+  tm_layout(main.title = "2010 Census Tracts")
+# We notice that there is a warning message, saying that there are more levels of community areas than the color palette, which is fine. As a result, some areas are grouped using the same color, resulting in larger areas.
+```
+
+# Police Beats
+```{r}
+# Same procedures as before
+head(police_beats2019)
+tm_shape(police_beats2019) + tm_polygons("beat", palette = "Accent") +
+  tm_layout(main.title = "Police Beats")
+```
+
+# Police Wards
+```{r}
+# Same procedures as before
+head(wards2019)
+tm_shape(wards2019) + tm_polygons("ward", palette = "Paired") +
+  tm_layout(main.title = "Police Wards")
+```
+

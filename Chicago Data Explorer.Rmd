@@ -48,7 +48,8 @@ Column {data-width=350}
 ### Select Dataset and Attributes
 ```{r}
 span(tags$i(h6("Data current as of June 2020.")), style="color:#045a8d")
-selectizeInput("dataset", "Choose a dataset:", choices = c("Chicago Public Shools 2018", "Divvy", "CTA Stations", "Social Vulnerability Index"))
+selectizeInput("dataset", "Choose a dataset:", choices = c("Chicago Public Shools 2018", "Divvy", "CTA Stations", "Social Vulnerability Index", selected = NULL, multiple = FALSE,
+               options = NULL))
 selectInput("variable", "Choose a variable:", choices = c("1", "2", "3"))
 selectInput("by", "visualize by:", choices = c("Community Area", "2010 Cencus Tracts", "Police Beats", "Police Wards"))
 selectInput("as", "show as:", choices = c("density dot", "dots", "Choropleth Map"))
@@ -82,7 +83,7 @@ Output {data-width=650}
 # update region selections
   observeEvent(input$dataset, {
     if (input$dataset=="Divvy") {
-      updateSelectInput(session = session, inputId = "variable", 
+      updateSelectizeInput(session = session, inputId = "variable", 
                         choices = c("Total Docks", "Docks in Service"))
       updateSelectInput(session = session, inputId = "by", 
                         choices = c("Community Area", "2010 Census Tracts", "Police Wards"))
@@ -90,7 +91,7 @@ Output {data-width=650}
                         choices = c("Choropleth Map", "Dots"))
     }
      if (input$dataset=="Chicago Public Shools 2018") {
-      updateSelectInput(session = session, inputId = "variable", 
+      updateSelectizeInput(session = session, inputId = "variable", 
                         choices = c("School Type", "Primary Category", "Student Growth Rating", "Student Attainment Rating", "Culture Climate Rating", "Healthy School Certification", "School Survey Amibitious Instruction", "School Survey Safety", "Suspensions Per 100 Students Year 1 Percent"))
       updateSelectInput(session = session, inputId = "by", 
                         choices = c("NA"))
@@ -106,7 +107,7 @@ Output {data-width=650}
     }
   })
 
-#renderLeaflet({
+renderLeaflet({
   leaflet(ca_boundaries) %>%
   addPolygons(color = "#444444", weight = 1, smoothFactor = 0.5,
     opacity = 1.0, fillOpacity = 0.5,
@@ -116,6 +117,15 @@ Output {data-width=650}
     addProviderTiles(providers$CartoDB.Positron)
   })
 
+renderLeaflet({
+  leaflet(census_tracts_2010) %>%
+  addPolygons(color = "#444444", weight = 1, smoothFactor = 0.5,
+    opacity = 1.0, fillOpacity = 0.5,
+    fillColor = ~colorQuantile("YlOrRd", commarea_n)(commarea_n),
+    highlightOptions = highlightOptions(color = "white", weight = 2,
+      bringToFront = TRUE)) %>% 
+    addProviderTiles(providers$CartoDB.Positron)
+  })
 renderLeaflet({
       leaflet(divvy) %>% 
       addCircles(divvy$geometry) %>% 
