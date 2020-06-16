@@ -1,4 +1,4 @@
-ata Package
+Chicago Data Package
 ====================
 
 <!-- badges: start --> <!-- badges: end -->
