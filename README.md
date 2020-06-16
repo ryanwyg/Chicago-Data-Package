@@ -36,7 +36,7 @@ directly from github:
 
 ``` r
 library(devtools)
-install_github("ryanwyg/Chicago-Data-Package")
+install_github("ryanwyg/Chicago-Data-Package", build_vignettes = TRUE)
 ```
 
 The installation might take several seconds to a minute depending on your internet connection.
@@ -162,15 +162,20 @@ Vignettes
 ---------
 Three examples using this package is included. They concern with the visualization and data wrangling that one would be able to do using the ChicagoPackage.
 
+To see the vignettes in R, simply run the following code:
+``` r
+vignette(package = "ChicagoPackage")
+```
+
 The Chicago Data Explorer
 -------------------------
 
 This is a flexdashboard app with RShiny code incorporated. This app uses
 the data and functionalities in this package itself and it intends to be
 a tool for initial assessment of the Chicago data, aiming to quickly
-guide interests for further data discovery.
+guide interests for further data discovery. 
 
-The app is currently published on the RShiny server here:
+The app is currently published on the RShiny server here and updated frequently:
 <a href="https://ryanwyg.shinyapps.io/ChicagoDataExplorer/#section-the-maps" class="uri">https://ryanwyg.shinyapps.io/ChicagoDataExplorer/#section-the-maps</a>
 ![Image of Data Explorer
 App](https://github.com/ryanwyg/Chicago-Data-Package/blob/master/ChicagoDataExplorer.png)
@@ -178,7 +183,7 @@ App](https://github.com/ryanwyg/Chicago-Data-Package/blob/master/ChicagoDataExpl
 The app is made into two sections, a spatial data explorer section (“The
 Maps”) and a non-spatial data explorer section(“The Tables”). Both use
 sidebars to select specific variables of interest, and has the
-functionality for downloading the data.
+functionality for downloading the data. If you are interested in further developing this app, or help trouble shooting, feel free to refer to the "ChicagoDataExplorer" RMD file.
 
 Known Issues
 ------------
