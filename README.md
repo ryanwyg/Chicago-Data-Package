@@ -1,4 +1,4 @@
-Chicago Data Package
+ata Package
 ====================
 
 <!-- badges: start --> <!-- badges: end -->
@@ -82,8 +82,9 @@ Boundaries - Zoning Districts (current): Accessed
 as a geojson file;
 </li>
 <li>
-Affordable Rental Housing Developments (points) (2019): Accessed here as
-a json file;
+Affordable Rental Housing Developments (points) (2019): Accessed 
+<a href="https://data.cityofchicago.org/Community-Economic-Development/Affordable-Rental-Housing-Developments/s6ha-ppgi">here</a> as
+a csv file;
 </li>
 <li>
 Chicago Public Schools - School Progress Reports SY1617 (points, with
@@ -94,14 +95,12 @@ as a json file;
 <li>
 CTA - Ridership - Monthly Day-Type Averages & Totals: Accessed
 <a href="https://data.cityofchicago.org/Transportation/CTA-Ridership-Bus-Routes-Monthly-Day-Type-Averages/bynn-gwxy">here</a>
-as a json file;
+as a csv file;
 </li>
 <li>
 CTA - ‘L’ (Rail) Stations: Accessed
 <a href="https://data.cityofchicago.org/Transportation/CTA-L-Rail-Stations-Shapefile/vmyy-m9qj">here</a>
-as a zip file (points, with community area information) (will have to
-figure out a way to unzip and manage this dataset, possibly a new R
-script);
+as a csv file (points, with community area information);
 </li>
 <li>
 Census Data - Selected socioeconomic indicators in Chicago, 2008 – 2012
@@ -141,7 +140,7 @@ included an additional dataset below which I think is quite important:
 Crimes - 2001 to Present (points, with temporal information, can
 aggregate by community area, police wards, beats): Accessed
 <a href="https://data.cityofchicago.org/Public-Safety/Crimes-Map/dfnk-7re6">here</a>
-as a json file;
+as a csv file;
 </li>
 <li>
 Divvy Trips (points, with beginning and end point info): Accessed
@@ -177,11 +176,11 @@ Known Issues
 ------------
 
 ### Data Package
-The "Crime" and "Divvy Trips" datasets are very large and not supported on Github;
+The "Crime" and "Divvy Trips" datasets are very large and not supported on Github; &nbsp
 csv_to_sf function not working properly (read.csv would return "'file' must be a character string or connection" in the function, but works normally when used separately.)
 
 ### Data Explorer App
-Irrelevant selection is currently not greyed out in visualization tab (e.g. "Year" slider is always there yet only one dataset would utilize this functionality);
+Irrelevant selection is currently not greyed out in visualization tab (e.g. "Year" slider is always there yet only one dataset would utilize this functionality); &nbsp
 Scrolling is buggy in the data table visualization (second tab);
 App is not optimized for mobile.
 
