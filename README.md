@@ -39,8 +39,12 @@ library(devtools)
 install_github("ryanwyg/Chicago-Data-Package")
 ```
 
-The installation might take several minutes depending on your internet
-connection, as some of the datasets in this pacakge are large.
+The installation might take several seconds to a minute depending on your internet connection.
+
+To use the package, simple run:
+``` r
+library(ChicagoPackage)
+```
 
 Datasets Included
 -----------------
@@ -154,6 +158,10 @@ More datasets will be added after the completion of the first stage of
 project.
 </p>
 
+Vignettes
+---------
+Three examples using this package is included. They concern with the visualization and data wrangling that one would be able to do using the ChicagoPackage.
+
 The Chicago Data Explorer
 -------------------------
 
@@ -176,11 +184,11 @@ Known Issues
 ------------
 
 ### Data Package
-The "Crime" and "Divvy Trips" datasets are very large and not supported on Github; &nbsp
+The "Crime" and "Divvy Trips" datasets are very large and not supported on Github; &nbsp;
 csv_to_sf function not working properly (read.csv would return "'file' must be a character string or connection" in the function, but works normally when used separately.)
 
 ### Data Explorer App
-Irrelevant selection is currently not greyed out in visualization tab (e.g. "Year" slider is always there yet only one dataset would utilize this functionality); &nbsp
+Irrelevant selection is currently not greyed out in visualization tab (e.g. "Year" slider is always there yet only one dataset would utilize this functionality); &nbsp;
 Scrolling is buggy in the data table visualization (second tab);
 App is not optimized for mobile.
 
