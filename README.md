@@ -39,7 +39,7 @@ library(devtools)
 install_github("ryanwyg/Chicago-Data-Package", build_vignettes = TRUE)
 ```
 
-The installation might take several seconds to a minute depending on your internet connection.
+The installation might take several seconds to a minute depending on your internet connection and computer specifications.
 
 To use the package, simple run:
 ``` r
