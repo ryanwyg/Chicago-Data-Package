@@ -39,6 +39,7 @@ head(ca_boundaries)
 tm_shape(ca_boundaries) + tm_polygons("shape_area", palette = "Greens") +
   tm_layout(main.title = "Community Areas")
 ```
+
 # Census Tracts
 ```{r}
 # Again, properties
